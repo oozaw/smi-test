@@ -54,6 +54,7 @@ class AuthController extends Controller {
     public function logout() {
         try {
             auth()->logout();
+            JWTAuth::invalidate(JWTAuth::getToken());
 
             return ApiResponse::success(204, 'NO CONTENT');
         } catch (\Throwable $th) {
